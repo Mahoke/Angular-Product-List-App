@@ -1,3 +1,33 @@
-<p>
-  login works!
-</p>
+<div class="signin-content">
+  <mat-card>
+    <mat-card-content>
+      <mat-tab-group>
+        <mat-tab label="Tab 1">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <p>Please login to continue</p>
+            <mat-form-field class="full-width-input" for="username">
+              <input matInput placeholder="Username" formControlName="username" required>
+              <mat-error *ngIf="submitted && f['username'].errors?.required">
+                Please insert a username.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width-input">
+              <input matInput type="password" placeholder="Password" formControlName="password" required>
+
+              <mat-error *ngIf="submitted && f['password'].errors?.required">
+                  Please insert a password.
+              </mat-error>
+            </mat-form-field>
+            <button [disabled]="loading" mat-button color="primary">Create account</button>
+
+            <button [disabled]="loading" mat-raised-button color="primary" type="submit">Login</button>
+
+          </form>
+        </mat-tab>
+        <mat-tab label="Tab 2">Content 2</mat-tab>
+      </mat-tab-group>
+
+    </mat-card-content>
+  </mat-card>
+</div>
