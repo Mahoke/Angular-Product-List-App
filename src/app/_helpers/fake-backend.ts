@@ -30,7 +30,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
               lastName: user.lastName,
               token: 'fake-jwt-token'
           };
-
+          console.log('succesfull login');
           return of(new HttpResponse({status: 200, body: body}));
         } else {
           // else return 400 bad request

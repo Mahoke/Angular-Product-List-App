@@ -12,7 +12,8 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   createUser(user: User) {
-    return this.http.post('/api/users/', user);
+    console.log('posting');
+    return this.http.post('/api/users', user);
   }
 
   getAll() {

@@ -1,8 +1,6 @@
 <div class="signin-content">
   <mat-card>
     <mat-card-content>
-      <mat-tab-group>
-        <mat-tab label="Tab 1">
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <p>Please login to continue</p>
             <mat-form-field class="full-width-input" for="username">
@@ -19,14 +17,10 @@
                   Please insert a password.
               </mat-error>
             </mat-form-field>
-            <button [disabled]="loading" mat-button color="primary">Create account</button>
-
+            <a mat-button [routerLink]="['/register']"> Create account</a>
             <button [disabled]="loading" mat-raised-button color="primary" type="submit">Login</button>
 
           </form>
-        </mat-tab>
-        <mat-tab label="Tab 2">Content 2</mat-tab>
-      </mat-tab-group>
 
     </mat-card-content>
   </mat-card>
