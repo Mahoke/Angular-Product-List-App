@@ -1,0 +1,71 @@
+<mat-toolbar color="primary">
+  <span>Hi there !</span>
+</mat-toolbar>
+
+<mat-sidenav-container style="height: 100vh">
+
+<mat-sidenav #sidenav style="overflow:hidden;" mode="over">
+
+  <mat-nav-list >
+    <div *ngFor="let navItem of navigationItems">
+      <a matIcon=home mat-list-item *ngIf="!navItem.dropdown" [ngClass]="{'active': activeItemId === navItem.id}"
+      routerLink="{{navItem.routerLink}}"
+      (click)="setActive(navItem.id)">
+        <mat-icon>
+            {{navItem.icon}}
+        </mat-icon>
+        {{navItem.title}}
+      </a>
+
+      <mat-expansion-panel *ngIf="navItem.dropdown" class="exp-pan-no-padding">
+          <mat-expansion-panel-header >
+            <mat-panel-title>
+                <a mat-list-item
+                  style="width: 200px" [ngClass]="{'active': activeItemId === navItem.id}"
+                  routerLink="{{navItem.routerLink}}" (click)="setActive(navItem.id)">
+                  <mat-icon>
+                    {{navItem.icon}}
+                  </mat-icon>
+
+                  {{navItem.title}}
+                </a>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-nav-list class="exp-pan-sub">
+
+            <div *ngFor="let item of navItem.items">
+                <a mat-list-item class="exp-pan-sub-item" [ngClass]="{'active': activeItemId === item.id}"
+                  routerLink="{{item.routerLink}}" (click)="setActive(item.id)">
+                  <mat-icon>arrow_right</mat-icon> {{item.title}}
+                </a>
+            </div>
+
+
+            <!-- <mat-list-item style="font-weight: bold"> <mat-icon>arrow_right</mat-icon>Link 3.1 </mat-list-item>
+            <a mat-list-item class="exp-pan-sub-item active"> <mat-icon>arrow_right</mat-icon>Link 3.1</a>
+            <a mat-list-item class="exp-pan-sub-item"> <mat-icon style="font-size: 15px">label_important</mat-icon><h3>Link 3.2</h3></a> -->
+
+          </mat-nav-list>
+
+        </mat-expansion-panel>
+
+    </div>
+  </mat-nav-list>
+
+</mat-sidenav>
+
+
+
+
+
+<mat-sidenav-content #main>
+
+
+  <button mat-button (click)="sidenav.toggle()">Toggle</button>
+  <mat-icon>menu</mat-icon>
+  <router-outlet></router-outlet>
+
+</mat-sidenav-content>
+
+</mat-sidenav-container>

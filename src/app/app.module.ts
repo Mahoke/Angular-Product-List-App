@@ -11,20 +11,25 @@ import { MaterialModule } from './material/material.module';
 import 'hammerjs';
 import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './_directives';
-import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService, AuthenticationService, AlertService } from './_services';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { fakeBackendProvider } from './_helpers';
+import { NavigationComponent } from './navigation/navigation.component';
+import { HomeLayoutComponent, LoginLayoutComponent } from './_layouts';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AlertComponent,
-    HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavigationComponent,
+    HomeLayoutComponent,
+    LoginLayoutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

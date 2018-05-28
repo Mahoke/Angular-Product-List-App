@@ -1,22 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
 
 import { User } from '../_models';
 import { UserService } from '../_services';
 
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
-})
+@Component({templateUrl: 'home.component.html'})
 export class HomeComponent implements OnInit {
+    currentUser: User;
+    users: User[] = [];
 
-  currentUser: User;
+    constructor(private userService: UserService) {
+        this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    }
 
-  constructor(private userService: UserService) {
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-  }
+    ngOnInit() {
+        this.loadAllUsers();
+    }
 
-  ngOnInit() {
-  }
-
+    private loadAllUsers() {
+        this.userService.getAll().pipe(first()).subscribe(users => {
+            this.users = users;
+            console.log(this.users);
+        });
+    }
 }

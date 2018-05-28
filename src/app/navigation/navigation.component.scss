@@ -1,0 +1,39 @@
+
+mat-sidenav-content {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 200px;
+  height: 100%;
+}
+
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]){
+  box-shadow: none;
+}
+
+/deep/ .exp-pan-no-padding .mat-expansion-panel-body {
+  padding: 0;
+}
+
+/deep/ .exp-pan-sub  {
+  background-color: #f0f0f0;
+}
+
+/deep/ .mat-expansion-indicator {
+  padding: 20px;
+}
+
+a.active {
+  size: 110%;
+  font-weight: bold;
+}
+
+/* /deep/ .exp-pan-sub-item {
+  padding-left: 20px;
+} */
+
+mat-expansion-panel-header {
+  padding: 0;
+}
