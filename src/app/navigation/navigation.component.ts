@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../_models';
 
 
 
@@ -12,19 +13,13 @@ import { Component, OnInit } from '@angular/core';
 export class NavigationComponent implements OnInit {
 
   activeItemId = 'home';
+  currentUser: User;
 
   navigationItems = [
     { id: 'home',
-      icon: 'home',
+      icon: 'home_outline',
       title: 'Home',
       routerLink: '/',
-      dropdown: false,
-      items: []
-    },
-    { id: 'about',
-      icon: 'info',
-      title: 'About',
-      routerLink: '/about',
       dropdown: false,
       items: []
     },
@@ -51,9 +46,18 @@ export class NavigationComponent implements OnInit {
         }
       ]
     },
+    { id: 'about',
+      icon: 'info_outline',
+      title: 'About',
+      routerLink: '/login',
+      dropdown: false,
+      items: []
+    }
   ];
 
-  constructor() { }
+  constructor() {
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
   }

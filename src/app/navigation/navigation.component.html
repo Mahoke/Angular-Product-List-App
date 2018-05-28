@@ -1,5 +1,11 @@
 <mat-toolbar color="primary">
-  <span>Hi there !</span>
+  <mat-toolbar-row>
+    <mat-icon class="toolbar-icon" *ngIf="!sidenav.opened" (click)="sidenav.toggle()"> menu </mat-icon>
+    <mat-icon class="toolbar-icon" *ngIf="sidenav.opened" (click)="sidenav.toggle()"> close </mat-icon>
+    <span style= "vertical-align: middle" >
+      Hi there, {{currentUser.firstname.charAt(0).toUpperCase() + currentUser.firstname.slice(1).toLowerCase()}}!
+    </span>
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-sidenav-container style="height: 100vh">
@@ -8,26 +14,26 @@
 
   <mat-nav-list >
     <div *ngFor="let navItem of navigationItems">
-      <a matIcon=home mat-list-item *ngIf="!navItem.dropdown" [ngClass]="{'active': activeItemId === navItem.id}"
+      <a mat-list-item *ngIf="!navItem.dropdown" [ngClass]="{'active': activeItemId === navItem.id}"
       routerLink="{{navItem.routerLink}}"
       (click)="setActive(navItem.id)">
         <mat-icon>
             {{navItem.icon}}
         </mat-icon>
-        {{navItem.title}}
+        <span class="aligned-with-icon">{{navItem.title}}</span>
       </a>
 
       <mat-expansion-panel *ngIf="navItem.dropdown" class="exp-pan-no-padding">
           <mat-expansion-panel-header >
             <mat-panel-title>
                 <a mat-list-item
-                  style="width: 200px" [ngClass]="{'active': activeItemId === navItem.id}"
+                  style="width: 200px; vertical-align: middle" [ngClass]="{'active': activeItemId === navItem.id}"
                   routerLink="{{navItem.routerLink}}" (click)="setActive(navItem.id)">
                   <mat-icon>
                     {{navItem.icon}}
                   </mat-icon>
+                  <span class="aligned-with-icon">{{navItem.title}}</span>
 
-                  {{navItem.title}}
                 </a>
             </mat-panel-title>
           </mat-expansion-panel-header>
@@ -37,7 +43,8 @@
             <div *ngFor="let item of navItem.items">
                 <a mat-list-item class="exp-pan-sub-item" [ngClass]="{'active': activeItemId === item.id}"
                   routerLink="{{item.routerLink}}" (click)="setActive(item.id)">
-                  <mat-icon>arrow_right</mat-icon> {{item.title}}
+                  <mat-icon>arrow_right</mat-icon>
+                  <span>{{item.title}}</span>
                 </a>
             </div>
 
@@ -61,9 +68,6 @@
 
 <mat-sidenav-content #main>
 
-
-  <button mat-button (click)="sidenav.toggle()">Toggle</button>
-  <mat-icon>menu</mat-icon>
   <router-outlet></router-outlet>
 
 </mat-sidenav-content>

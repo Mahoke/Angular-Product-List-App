@@ -1,3 +1,9 @@
+.toolbar-icon{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+}
 
 mat-sidenav-content {
   height: 100%;
@@ -11,6 +17,11 @@ mat-sidenav {
 
 .mat-expansion-panel:not([class*="mat-elevation-z"]){
   box-shadow: none;
+}
+
+.aligned-with-icon{
+  margin-top: 2px;
+  margin-left: 15px; /* optional */
 }
 
 /deep/ .exp-pan-no-padding .mat-expansion-panel-body {

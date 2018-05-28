@@ -25,9 +25,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           const user = filteredUsers[0];
           const body = {
               id: user.id,
+              email: user.email,
               username: user.username,
-              firstName: user.firstName,
-              lastName: user.lastName,
+              firstname: user.firstname,
+              lastname: user.lastname,
               token: 'fake-jwt-token'
           };
           console.log('succesfull login');
@@ -78,6 +79,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         const duplicateUser = users.filter( user => user.username === newUser.username).length;
         if (duplicateUser) {
             return throwError('Username "' + newUser.username + '" is already taken');
+        }
+
+        const duplicateMail = users.filter( user => user.email === newUser.email).length;
+        if (duplicateMail) {
+            return throwError('"' + newUser.email + '" is already in use');
         }
 
         // save new user
