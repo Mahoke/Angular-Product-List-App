@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from '../_models';
+import { map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,16 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   createUser(user: User) {
-    console.log('posting');
-    return this.http.post('/api/users', user);
+
+    return this.http.post('http://192.168.43.84:5002/register', user)
+      .pipe( map( error => {
+        if (error['user'] === 'taken') {
+          console.log('throwing');
+          return throwError('Username "' + user.username + '" is already taken');
+        }
+
+        return user;
+    }));
   }
 
   getAll() {
