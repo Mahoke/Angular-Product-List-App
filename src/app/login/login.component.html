@@ -1,6 +1,7 @@
 <div class="signin-content">
   <mat-card>
     <mat-card-content>
+      <app-alert></app-alert>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <p>Please login to continue</p>
             <mat-form-field class="full-width-input" for="username">
