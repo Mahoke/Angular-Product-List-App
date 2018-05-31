@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { Product, Productlist } from '../_models';
+import { Product, ProductList } from '../_models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,33 +14,36 @@ export class ProductlistService {
   // CRUD for productlists
   constructor(private http: HttpClient) { }
 
-  createProductlist(productlist: Productlist) {
+  createProductlist(productlist: ProductList) {
     return this.http.post('http://localhost:5002/lists', productlist)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getAllProductlists() {
-    return this.http.get<Productlist[]>('/lists').pipe(
+  getAllProductLists() {
+    return this.http.get<ProductList[]>('http://localhost:5002/lists').pipe(
       catchError(this.handleError)
     );
   }
 
-  getProductlistById(id: number){
-    return this.http.get<Productlist>('/lists/ '+ id).pipe(
+  getProductlistById(id: number) {
+    console.log('getting list: ' + id);
+    return this.http.get<ProductList>('http://localhost:5002/lists/ ' + id).pipe(
       catchError(this.handleError)
     );
   }
 
-  updateProductlist(id: number, productlist: Productlist) {
-    return this.http.put('/lists/' + id, productlist).pipe(
+  updateProductlist(productlist: ProductList) {
+    console.log(productlist);
+    return this.http.put('http://localhost:5002/lists/' + productlist.id, {'productlist' : productlist}).pipe(
       catchError(this.handleError)
     );
   }
 
-  deleteUser(id: number) {
-    return this.http.delete('/lists/' + id).pipe(
+  deleteProductList(id: number) {
+    console.log('Sending delete list request');
+    return this.http.delete('http://localhost:5002/lists/' + id).pipe(
       catchError(this.handleError)
     );
   }
@@ -53,6 +56,6 @@ export class ProductlistService {
       return throwError(
         'Something bad happened; please try again later.');
     }
-    
+
   }
 }

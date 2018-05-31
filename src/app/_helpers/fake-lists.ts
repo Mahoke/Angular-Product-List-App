@@ -1,4 +1,4 @@
-import { Productlist, Product } from '../_models';
+import { Product, ProductList } from '../_models';
 
 export const PRODLISTS: ProductList[] = [
 

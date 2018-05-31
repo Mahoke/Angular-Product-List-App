@@ -1,0 +1,14 @@
+.list-expansion{
+  max-width: 50em;
+}
+
+.selected-item{
+  background-color: lightgrey;
+}
+
+.button-row-align-right{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+}

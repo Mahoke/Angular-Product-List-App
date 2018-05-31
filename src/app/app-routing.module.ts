@@ -7,6 +7,9 @@ import { AuthGuard } from './_guards';
 import { HomeLayoutComponent, LoginLayoutComponent } from './_layouts';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
+import { ProductListsComponent } from './product-lists/product-lists.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { DeactivateProductList } from './_deactivators';
 
 const routes: Routes = [
   {
@@ -17,6 +20,15 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent
+      },
+      {
+        path: 'lists',
+        component: ProductListsComponent
+      },
+      {
+        path: 'lists/:id',
+        component: ProductListComponent,
+        canDeactivate: [DeactivateProductList]
       }
     ]
   },

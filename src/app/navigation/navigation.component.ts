@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../_models';
+import { User, ProductList } from '../_models';
+import { ProductlistService, AlertService } from '../_services';
+import { first } from 'rxjs/operators';
 
 
 
@@ -12,6 +14,7 @@ import { User } from '../_models';
 
 export class NavigationComponent implements OnInit {
 
+  productlists: ProductList[];
   activeItemId = 'home';
   currentUser: User;
 
@@ -28,23 +31,7 @@ export class NavigationComponent implements OnInit {
       title: 'Lists',
       routerLink: '/lists',
       dropdown: true,
-      items: [
-        {
-          id: 'l1',
-          title: 'Lijst één',
-          routerLink: '/lists/1'
-        },
-        {
-          id: 'l2',
-          title: 'Lijst twee',
-          routerLink: '/lists/2'
-        },
-        {
-          id: 'l3',
-          title: 'Lijst drie',
-          routerLink: '/lists/3'
-        }
-      ]
+      items: []
     },
     { id: 'about',
       icon: 'info_outline',
@@ -55,11 +42,35 @@ export class NavigationComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(private alertService: AlertService, private productlistService: ProductlistService) {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.getProductLists();
   }
 
   ngOnInit() {
+  }
+
+  getProductLists(): void {
+    console.log('gettings plists');
+     this.productlistService.getAllProductLists().pipe(first())
+      .subscribe(
+          (data: ProductList[]) => {
+            this.navigationItems.forEach(element => {
+              if (element.id === 'lists') {
+                data.forEach(listelement => {
+                  console.log(listelement.name);
+                    element.items.push({
+                      id: listelement.id,
+                      title: listelement.name,
+                      routerLink: '/lists/' + listelement.id
+                    });
+                });
+              }
+            });
+          },
+          error => {
+              this.alertService.error(error);
+          });
   }
 
   setActive(id: string) {

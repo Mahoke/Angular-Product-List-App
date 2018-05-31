@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,9 @@ import { fakeBackendProvider } from './_helpers';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeLayoutComponent, LoginLayoutComponent } from './_layouts';
 import { HomeComponent } from './home/home.component';
+import { ProductListsComponent } from './product-lists/product-lists.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { DeactivateProductList} from './_deactivators';
 
 @NgModule({
   declarations: [
@@ -29,11 +32,14 @@ import { HomeComponent } from './home/home.component';
     NavigationComponent,
     HomeLayoutComponent,
     LoginLayoutComponent,
-    HomeComponent
+    HomeComponent,
+    ProductListsComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
@@ -51,7 +57,8 @@ import { HomeComponent } from './home/home.component';
     },
 
     // provider used to create fake backend
-    fakeBackendProvider
+    fakeBackendProvider,
+    DeactivateProductList
   ],
   bootstrap: [AppComponent]
 })

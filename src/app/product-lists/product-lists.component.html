@@ -1,0 +1,50 @@
+<div style="width: 40em; margin: 0 auto; margin-top: 4em; padding-top: 20;" >
+  <mat-accordion>
+    <div *ngFor="let ProductList of productlists">
+      <mat-expansion-panel class="list-expansion">
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div>
+                  {{ProductList.name}}
+                </div>
+              </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-divider></mat-divider>
+
+          <div *ngFor="let Product of ProductList.products">
+            <div *ngIf="!Product.checked">
+                  <mat-checkbox [(ngModel)]="Product.checked">
+                      {{Product.name}}</mat-checkbox>
+                      {{Product.quantity}}
+
+            </div>
+          </div>
+
+        <mat-divider></mat-divider>
+
+        <div *ngFor="let Product of ProductList.products">
+          <div *ngIf="Product.checked">
+            <mat-checkbox [(ngModel)]="Product.checked">
+            {{Product.name}}</mat-checkbox>
+            {{Product.quantity}}
+          </div>
+        </div>
+
+        <br><br>
+
+          <div class="button-row-align-right">
+            <button mat-button color="warn" (click)="deleteProductList(ProductList)">
+              <!-- <mat-icon style="font-size: 1.4em">delete</mat-icon> -->
+              Verwijderen
+            </button>
+
+            <button mat-raised-button color="primary" routerLink="./{{ ProductList.id }}">
+              <!-- <mat-icon style="font-size: 1.4em">edit</mat-icon> -->
+              Aanpassen
+            </button>
+          </div>
+        </mat-expansion-panel>
+    </div>
+  </mat-accordion>
+</div>
