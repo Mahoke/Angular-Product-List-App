@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar  class="header-toolbar" color="primary">
   <mat-toolbar-row>
     <mat-icon class="toolbar-icon" *ngIf="!sidenav.opened" (click)="sidenav.toggle()"> menu </mat-icon>
     <mat-icon class="toolbar-icon" *ngIf="sidenav.opened" (click)="sidenav.toggle()"> close </mat-icon>
@@ -10,7 +10,9 @@
 
 <mat-sidenav-container style="height: 100vh">
 
-<mat-sidenav #sidenav style="overflow:hidden;" mode="over">
+<mat-sidenav [fixedInViewport]=true [fixedTopGap]="60"
+[fixedBottomGap]="0"
+#sidenav  mode="over">
 
   <mat-nav-list >
     <div *ngFor="let navItem of navigationItems">
