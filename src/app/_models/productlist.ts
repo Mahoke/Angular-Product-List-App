@@ -1,6 +1,6 @@
 import { Product } from '.';
 
-export class ProductList {
+export class Productlist {
   id: number;
   name: string;
   products: Product[];
