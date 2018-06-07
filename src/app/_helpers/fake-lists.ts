@@ -6,21 +6,21 @@ export const PRODLISTS: ProductList[] = [
       id: 1,
       name: 'Jumbo',
       products: [
-          {id: 1, name: 'kaas', quantity: 4, inStock: true},
-          {id: 2, name: 'melk', quantity: 12, inStock: true}
+          {id: 1, name: 'kaas', pack_size:2, quantity: 4, checked: true, productlist_id: 1, description: 'Omschrijving', price: 0.0},
+          {id: 2, name: 'melk', pack_size:2, quantity: 12, checked: true, productlist_id: 1, description: 'Omschrijving', price: 0.0}
       ]
   },
   {
       id: 2,
       name: 'Albert-Heijn',
       products: [
-          {id: 1, name: 'covfefe',   quantity: 4, inStock: false},
-          {id: 2, name: 'melk',   quantity: 12, inStock: false},
-          {id: 1080, name: 'yogurt',   quantity: 122, inStock: false},
-          {id: 532, name: 'parmazan', quantity: 20, inStock: true},
-          {id: 3, name: 'vla',   quantity: 3, inStock: false},
-          {id: 4, name: 'kroepoek',   quantity: 4, inStock: false},
-          {id: 900, name: 'ananas', quantity: 2, inStock: false}
+          {id: 1, name: 'covfefe',   quantity: 4, pack_size: 2, checked: false, productlist_id: 2, description: 'Omschrijving', price: 0.0},
+          {id: 2, name: 'melk',   quantity: 12, pack_size: 2, checked: false, productlist_id: 2, description: 'Omschrijving', price: 0.0},
+          {id: 1080, name: 'yogurt',   quantity: 122, pack_size: 2, checked: false, productlist_id: 2, description: 'Omschrijving', price: 0.0},
+          {id: 532, name: 'parmazan', quantity: 20, pack_size: 2, checked: false, productlist_id: 2, description: 'Omschrijving', price: 0.0},
+          {id: 3, name: 'vla',   quantity: 3, pack_size: 2, checked: false, productlist_id: 2, description: 'Omschrijving', price: 0.0},
+          {id: 4, name: 'kroepoek',   quantity: 4,pack_size: 2, checked: false, productlist_id: 2, description: 'Omschrijving', price: 0.0},
+          {id: 900, name: 'ananas', quantity: 2,pack_size: 2, checked: false, productlist_id: 2, description: 'Omschrijving', price: 0.0}
       ]
   }
 
